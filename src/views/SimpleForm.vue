@@ -9,46 +9,54 @@
         v-model="event.category"
         label="Select a category"
       />
+      <fieldset>
+        <legend>Name & describe your event</legend>
 
-      <h3>Name & describe your event</h3>
-
-      <BaseInput
-        v-model="event.title"
-        label="Title"
-        type="text"
-      />
-
-      <BaseInput
-        v-model="event.description"
-        label="Description"
-        type="text"
-      />
-
-      <h3>Where is your event?</h3>
-
-      <BaseInput
-        v-model="event.location"
-        label="Location"
-        type="text"
-      />
-
-      <h3>Are pets allowed?</h3>
-
-      <BaseRadioGroup
-        v-model="event.pets"
-        name="pets"
-        :options="petOptions"
-        vertical
+        <BaseInput
+          v-model="event.title"
+          label="Title"
+          type="text"
+          error="This input has an error"
         />
 
-      <h3>Extras</h3>
+        <BaseInput
+          v-model="event.description"
+          label="Description"
+          type="text"
+        />
+      </fieldset>
 
-      <BaseCheckbox
-        v-model="event.extras.catering"
-        label="Catering"/>
-      <BaseCheckbox
-        v-model="event.extras.music"
-        label="Live music"/>
+      <fieldset>
+        <legend>Where is your event?</legend>
+
+        <BaseInput
+          v-model="event.location"
+          label="Location"
+          type="text"
+        />
+      </fieldset>
+
+      <fieldset>
+        <legend>Pets</legend>
+        <p>Are pets allowed?</p>
+        <BaseRadioGroup
+          v-model="event.pets"
+          name="pets"
+          :options="petOptions"
+          vertical
+          />
+      </fieldset>
+
+      <fieldset>
+        <legend>Extras</legend>
+
+        <BaseCheckbox
+          v-model="event.extras.catering"
+          label="Catering"/>
+        <BaseCheckbox
+          v-model="event.extras.music"
+          label="Live music"/>
+      </fieldset>
 
       <button type="submit">Submit</button>
     </form>
@@ -91,8 +99,27 @@ export default {
   },
   methods: {
     sendForm () {
-
+      axios.post('https://my-json-server.typicode.com/nathinho89/vue3-forms/events', this.event)
+        .then(response => {
+          console.log(response)
+        }).catch(error => {
+          console.log(error)
+        })
     }
   }
 }
 </script>
+
+<style lang="scss" scoped>
+fieldset {
+  border: 0;
+  padding: 0;
+  margin: 0;
+}
+
+legend {
+  font-size: 28px;
+  font-weight: 700;
+  margin-top: 20px;
+}
+</style>
