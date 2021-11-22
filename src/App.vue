@@ -1,22 +1,22 @@
 <template>
-<!--
+
     <LoginForm />
--->
+<!--
     <SimpleForm />
     <ComponentsForm />
-
+-->
 </template>
 
 <script>
-// import LoginForm from '@/views/LoginForm'
+import LoginForm from '@/views/LoginForm'
 // import SimpleForm from '@/views/SimpleForm'
-import ComponentsForm from '@/views/ComponentsForm'
+// import ComponentsForm from '@/views/ComponentsForm'
 
 export default {
   components: {
-    // LoginForm
+    LoginForm
     // SimpleForm
-    ComponentsForm
+    // ComponentsForm
   }
 }
 </script>
